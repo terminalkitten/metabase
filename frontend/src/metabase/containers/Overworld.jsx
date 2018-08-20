@@ -74,18 +74,6 @@ class Overworld extends React.Component {
     showXrays: false,
   };
 
-  componentWillMount = async () => {
-    const isDismissed = await window.localStorage.getItem(
-      "mb-hide-homepage-xrays",
-    );
-    this.setState({
-      showXrays: !isDismissed,
-    });
-  };
-  dismissXrays = async () => {
-    await window.localStorage.setItem("mb-hide-homepage-xrays", true);
-    this.setState({ showXrays: false });
-  };
   render() {
     const { user } = this.props;
     const { showXrays } = this.state;
@@ -122,11 +110,6 @@ class Overworld extends React.Component {
                               <SectionHeading>
                                 {t`Try these x-rays based on your data.`}
                               </SectionHeading>
-                              <Link
-                                ml="auto"
-                                onClick={() => this.dismissXrays()}
-                                color={colors["text-medium"]}
-                              >{t`I'm done looking at these`}</Link>
                             </Flex>
                             <Box>
                               <ExplorePane
